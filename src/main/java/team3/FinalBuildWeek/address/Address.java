@@ -1,4 +1,4 @@
-package team3.FinalBuildWeek.entities;
+package team3.FinalBuildWeek.address;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -24,5 +24,5 @@ public class Address {
     private String cityHall;
 
     @ManyToOne
-    private Company company;
+    private company.Company company;
 }

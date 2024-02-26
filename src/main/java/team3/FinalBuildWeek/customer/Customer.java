@@ -25,4 +25,11 @@ public class Customer {
     @JoinColumn(name = "company_id")
     private Company company;
 
+    public Customer(String name, String surname, String phone, String email, Company company) {
+        this.name = name;
+        this.surname = surname;
+        this.phone = phone;
+        this.email = email;
+        this.company = company;
+    }
 }
