@@ -34,7 +34,7 @@ public class UserSRV {
 
     public User save(UserDTO userDTO) {
         if (userDAO.existsByEmail(userDTO.email())) throw new BadRequestException("email already exist");
-        User user = new User(userDTO.name(), userDTO.surname(), userDTO.username(), userDTO.password(), userDTO.email(), userDTO.name()+userDTO.surname());
+        User user = new User(userDTO.name(), userDTO.surname(), userDTO.username(), passwordEncoder.encode(userDTO.password()), userDTO.email(), userDTO.name()+userDTO.surname());
         return userDAO.save(user);
     }
 
@@ -44,7 +44,7 @@ public class UserSRV {
     }
     public User findByIdAndUpdate(UUID id, UserDTO userDTO,User user){
         User found= findById(UUID.fromString(String.valueOf(id)));
-        if (!user.getId().equals(found.getId())) throw new UnauthorizedException("Manager with wrong id");
+        if (!user.getId().equals(found.getId())) throw new UnauthorizedException("User with wrong id");
         found.setName(userDTO.name());
         found.setSurname(userDTO.surname());
         found.setUsername(userDTO.username());
@@ -54,7 +54,7 @@ public class UserSRV {
     }
     public void deleteById(UUID id, User user) {
         User found = findById(id);
-        if (!user.getId().equals(UUID.fromString(String.valueOf(id)))) throw new UnauthorizedException("Manager with wrong id");
+        if (!user.getId().equals(UUID.fromString(String.valueOf(id)))) throw new UnauthorizedException("User with wrong id");
         userDAO.delete(found);
     }
 }

@@ -20,20 +20,13 @@ public class UserCTRL {
     @GetMapping
     public Page<User> getAll(@RequestParam(defaultValue = "0") int pageNumber,
                               @RequestParam(defaultValue = "10") int pageSize,
-                              @RequestParam(defaultValue = "date") String orderBy) {
+                              @RequestParam(defaultValue = "name") String orderBy) {
         return userSRV.getAll(pageNumber, pageSize, orderBy);
     }
 
     @GetMapping("/{id}")
     public User findById(@PathVariable UUID id) {
         return userSRV.findById(id);
-    }
-
-    @PostMapping("/me")
-    @PreAuthorize(("hasAuthority('USER')"))
-    @ResponseStatus(HttpStatus.CREATED)
-    public User save(@RequestBody UserDTO userDTO) throws IOException {
-        return this.userSRV.save(userDTO);
     }
 
 
