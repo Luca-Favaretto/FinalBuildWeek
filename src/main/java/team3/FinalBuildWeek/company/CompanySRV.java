@@ -11,6 +11,8 @@ import team3.FinalBuildWeek.customer.Customer;
 import team3.FinalBuildWeek.customer.CustomerDAO;
 import team3.FinalBuildWeek.exceptions.NotFoundException;
 
+import java.util.UUID;
+
 @Service
 public class CompanySRV {
     @Autowired
@@ -29,6 +31,28 @@ public class CompanySRV {
         if (pageNumber > 20) pageSize = 20;
         Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by(orderBy));
         return companyDAO.findAll(pageable);
+    }
+
+    public Company findCompanyById(UUID id){
+        return companyDAO.findById(id).orElseThrow(()-> new NotFoundException(id));
+    }
+
+    public void deleteCompany(UUID id){
+        Company found = this.findCompanyById(id);
+        companyDAO.delete(found);
+    }
+
+    public Company updateCompany(UUID id,CompanyDTO companyDTO){
+        Company found = this.findCompanyById(id);
+        found.setBusiness_name(companyDTO.business_name());
+        found.setVat_number(companyDTO.vat_number());
+        found.setEmail(companyDTO.email());
+        found.setPhone_number(companyDTO.phone_number());
+        found.setLogo(companyDTO.logo());
+        found.setInsertion_date(companyDTO.insertion_date());
+        found.setLast_contact_date(companyDTO.last_contact_date());
+        found.setType(companyDTO.type());
+       return companyDAO.save(found);
     }
 
 
