@@ -29,7 +29,7 @@ public class Customer {
     @JoinColumn(name = "company_id")
     private Company company;
 
-    @OneToMany
+    @OneToMany(mappedBy = "customer")
     private Set<Invoice> invoices;
 
     public Customer(String name, String surname, String phone, String email) {
