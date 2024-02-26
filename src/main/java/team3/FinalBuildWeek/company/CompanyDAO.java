@@ -7,4 +7,7 @@ import java.util.UUID;
 
 @Repository
 public interface CompanyDAO extends JpaRepository<Company, UUID> {
+       boolean existsByEmail(String email);
+
+
 }

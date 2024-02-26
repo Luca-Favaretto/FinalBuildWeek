@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import team3.FinalBuildWeek.address.Address;
 import team3.FinalBuildWeek.customer.Customer;
+import team3.FinalBuildWeek.enums.Type;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -30,12 +31,12 @@ public class Company {
     @OneToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
-    private String type;
+    private Type type;
     @OneToMany(mappedBy = "company" )
     private Set<Address> address;
 
 
-    public Company(String business_name, String vat_number, String email, String phone_number, String logo, LocalDate insertion_date, LocalDate last_contact_date, Customer customer, String type) {
+    public Company(String business_name, String vat_number, String email, String phone_number, String logo, LocalDate insertion_date, LocalDate last_contact_date,Customer customer, Type type) {
         this.business_name = business_name;
         this.vat_number = vat_number;
         this.email = email;

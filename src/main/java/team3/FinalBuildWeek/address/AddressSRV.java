@@ -8,7 +8,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import team3.FinalBuildWeek.exceptions.NotFoundException;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -30,8 +29,10 @@ public class AddressSRV {
     }
 
     public Address findById(UUID id) {
+
         return addressDAO.findById(id).orElseThrow(() -> new NotFoundException(id));
     }
+
 
     public void deleteById(UUID id) {
         Address found = findById(id);
