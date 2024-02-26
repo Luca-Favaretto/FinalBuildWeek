@@ -10,7 +10,7 @@ import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import team3.FinalBuildWeek.auth.Role;
+import team3.FinalBuildWeek.enums.Role;
 
 import java.util.Collection;
 import java.util.List;

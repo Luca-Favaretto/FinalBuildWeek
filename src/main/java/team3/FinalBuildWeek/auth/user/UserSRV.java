@@ -8,8 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import team3.FinalBuildWeek.exception.BadRequestException;
-import team3.FinalBuildWeek.exception.NotFoundException;
+import team3.FinalBuildWeek.exceptions.BadRequestException;
+import team3.FinalBuildWeek.exceptions.NotFoundException;
 
 import java.util.UUID;
 
@@ -29,7 +29,7 @@ public class UserSRV {
     }
 
     public User findById(Long id) {
-        return userDAO.findById(UUID.fromString(String.valueOf(id))).orElseThrow(() -> new NotFoundException(id));
+        return userDAO.findById(UUID.fromString(String.valueOf(id))).orElseThrow(() -> new NotFoundException(String.valueOf(id)));
     }
 
     public User save(UserDTO userDTO) {
