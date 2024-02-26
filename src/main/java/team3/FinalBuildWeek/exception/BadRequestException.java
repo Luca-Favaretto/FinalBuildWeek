@@ -17,4 +17,6 @@ public class BadRequestException extends RuntimeException {
         super("Error in payload");
         this.errorsList = errorsList;
     }
+
+
 }
