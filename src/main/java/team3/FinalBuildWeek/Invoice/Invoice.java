@@ -24,5 +24,6 @@ public class Invoice {
     private String invoiceNumber;
     private char invoiceStatus;
     @ManyToOne
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 }
