@@ -32,11 +32,10 @@ public class Customer {
     @OneToMany
     private Set<Invoice> invoices;
 
-    public Customer(String name, String surname, String phone, String email, Company company) {
+    public Customer(String name, String surname, String phone, String email) {
         this.name = name;
         this.surname = surname;
         this.phone = phone;
         this.email = email;
-        this.company = company;
     }
 }

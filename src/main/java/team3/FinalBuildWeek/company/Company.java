@@ -36,7 +36,7 @@ public class Company {
     private Set<Address> address;
 
 
-    public Company(String business_name, String vat_number, String email, String phone_number, String logo, LocalDate insertion_date, LocalDate last_contact_date,Customer customer, Type type) {
+    public Company(String business_name, String vat_number, String email, String phone_number, String logo, LocalDate insertion_date, LocalDate last_contact_date, Customer customer, Type type) {
         this.business_name = business_name;
         this.vat_number = vat_number;
         this.email = email;
