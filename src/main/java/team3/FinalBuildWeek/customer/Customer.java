@@ -1,12 +1,14 @@
-package customer;
+package team3.FinalBuildWeek.customer;
 
 
-import company.Company;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import team3.FinalBuildWeek.Invoice.Invoice;
+import team3.FinalBuildWeek.company.Company;
 
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -24,6 +26,9 @@ public class Customer {
     @OneToOne
     @JoinColumn(name = "company_id")
     private Company company;
+
+    @OneToMany
+    private Set<Invoice> invoices;
 
     public Customer(String name, String surname, String phone, String email, Company company) {
         this.name = name;

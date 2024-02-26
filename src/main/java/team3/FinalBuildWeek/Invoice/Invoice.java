@@ -2,6 +2,7 @@ package team3.FinalBuildWeek.Invoice;
 
 import jakarta.persistence.*;
 import lombok.*;
+import team3.FinalBuildWeek.customer.Customer;
 
 import java.sql.Date;
 import java.util.UUID;
@@ -23,5 +24,5 @@ public class Invoice {
     private String invoiceNumber;
     private char invoiceStatus;
     @ManyToOne
-    private Cliente cliente;
+    private Customer customer;
 }
