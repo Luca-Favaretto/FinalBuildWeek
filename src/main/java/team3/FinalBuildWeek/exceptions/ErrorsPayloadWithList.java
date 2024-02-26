@@ -1,4 +1,4 @@
-package team3.FinalBuildWeek.exception;
+package team3.FinalBuildWeek.exceptions;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package team3.FinalBuildWeek.exception;
+package team3.FinalBuildWeek.exceptions;
 
 import lombok.Getter;
 import org.springframework.validation.ObjectError;
@@ -17,6 +17,4 @@ public class BadRequestException extends RuntimeException {
         super("Error in payload");
         this.errorsList = errorsList;
     }
-
-
 }

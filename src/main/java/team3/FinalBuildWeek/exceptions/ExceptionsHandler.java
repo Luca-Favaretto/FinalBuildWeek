@@ -1,6 +1,4 @@
-package team3.FinalBuildWeek.exception;
-
-
+package team3.FinalBuildWeek.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,7 +15,7 @@ public class ExceptionsHandler {
     @ExceptionHandler(BadRequestException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorsPayload handleBadRequest(BadRequestException ex) {
-        if (ex.getErrorsList()!= null) {
+        if (ex.getErrorsList() != null) {
 
             List<String> errorsList = ex.getErrorsList().stream().map(objectError -> objectError.getDefaultMessage()).toList();
 
