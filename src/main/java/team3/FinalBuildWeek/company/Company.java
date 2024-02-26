@@ -1,12 +1,12 @@
-package company;
+package team3.FinalBuildWeek.company;
 
 
-import customer.Customer;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import team3.FinalBuildWeek.address.Address;
+import team3.FinalBuildWeek.customer.Customer;
 
 import java.time.LocalDate;
 import java.util.Set;

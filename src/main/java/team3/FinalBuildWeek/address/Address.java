@@ -2,6 +2,7 @@ package team3.FinalBuildWeek.address;
 
 import jakarta.persistence.*;
 import lombok.*;
+import team3.FinalBuildWeek.company.Company;
 
 import java.util.UUID;
 
@@ -24,5 +25,5 @@ public class Address {
     private String cityHall;
 
     @ManyToOne
-    private company.Company company;
+    private Company company;
 }
