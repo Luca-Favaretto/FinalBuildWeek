@@ -6,7 +6,7 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import team3.FinalBuildWeek.auth.user.User;
-import team3.FinalBuildWeek.exception.UnauthorizedException;
+import team3.FinalBuildWeek.exceptions.UnauthorizedException;
 
 import java.util.Date;
 

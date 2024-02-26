@@ -14,9 +14,10 @@ import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 import team3.FinalBuildWeek.auth.user.User;
 import team3.FinalBuildWeek.auth.user.UserSRV;
-import team3.FinalBuildWeek.exception.UnauthorizedException;
+import team3.FinalBuildWeek.exceptions.UnauthorizedException;
 
 import java.io.IOException;
+import java.util.UUID;
 
 @Component
 public class JWTFilter extends OncePerRequestFilter {
@@ -41,7 +42,7 @@ public class JWTFilter extends OncePerRequestFilter {
 
 
         String id = jwtTools.extractIdFromToken(accessToken);
-        User user = userSRV.findById(Long.valueOf(id));
+        User user = userSRV.findById(UUID.fromString(id));
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
 

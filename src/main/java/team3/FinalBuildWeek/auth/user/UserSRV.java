@@ -10,11 +10,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import team3.FinalBuildWeek.exceptions.BadRequestException;
 import team3.FinalBuildWeek.exceptions.NotFoundException;
+import team3.FinalBuildWeek.exceptions.UnauthorizedException;
 
 import java.util.UUID;
 
 @Service
-
 public class UserSRV {
     @Autowired
     UserDAO userDAO;
@@ -28,7 +28,7 @@ public class UserSRV {
         return userDAO.findAll(pageable);
     }
 
-    public User findById(Long id) {
+    public User findById(UUID id) {
         return userDAO.findById(UUID.fromString(String.valueOf(id))).orElseThrow(() -> new NotFoundException(String.valueOf(id)));
     }
 
@@ -40,5 +40,21 @@ public class UserSRV {
 
     public User findByEmail(String email) {
         return userDAO.findByEmail(email).orElseThrow(() -> new NotFoundException("Email " + email + " don't found"));
+
+    }
+    public User findByIdAndUpdate(UUID id, UserDTO userDTO,User user){
+        User found= findById(UUID.fromString(String.valueOf(id)));
+        if (!user.getId().equals(found.getId())) throw new UnauthorizedException("Manager with wrong id");
+        found.setName(userDTO.name());
+        found.setSurname(userDTO.surname());
+        found.setUsername(userDTO.username());
+        found.setPassword(userDTO.password());
+        found.setEmail(userDTO.email());
+        return userDAO.save(found);
+    }
+    public void deleteById(UUID id, User user) {
+        User found = findById(id);
+        if (!user.getId().equals(UUID.fromString(String.valueOf(id)))) throw new UnauthorizedException("Manager with wrong id");
+        userDAO.delete(found);
     }
 }
