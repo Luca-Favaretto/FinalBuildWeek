@@ -23,7 +23,6 @@ public class Address {
     @Column(name="post_code")
     private int PostCode;
     private String cityHall;
-
     @ManyToOne
     private Company company;
 }
