@@ -9,7 +9,6 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @ToString
 @NoArgsConstructor
 @Entity
@@ -25,4 +24,12 @@ public class Invoice {
     private char invoiceStatus;
     @ManyToOne
     private Customer customer;
+
+    public Invoice(Date date, double amount, String invoiceNumber, char invoiceStatus, Customer customer) {
+        this.date = date;
+        this.amount = amount;
+        this.invoiceNumber = invoiceNumber;
+        this.invoiceStatus = invoiceStatus;
+        this.customer = customer;
+    }
 }

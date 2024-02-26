@@ -6,8 +6,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import team3.FinalBuildWeek.exceptions.NotFoundException;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -28,13 +28,12 @@ public class AddressSRV {
         return addressDAO.save(address);
     }
 
-//    public Address findById(UUID id) {
-//        return addressDAO.findById(id).orElseThrow(() -> new NotFoundException(id));
-//    }
+    public Address findById(UUID id) {
+        return addressDAO.findById(id).orElseThrow(() -> new NotFoundException(id));
+    }
 
     public void deleteById(UUID id) {
         Address found = findById(id);
         addressDAO.delete(found);
     }
-
 }
