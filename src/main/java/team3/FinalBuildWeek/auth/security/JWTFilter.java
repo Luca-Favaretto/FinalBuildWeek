@@ -4,7 +4,6 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -14,7 +13,7 @@ import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 import team3.FinalBuildWeek.auth.user.User;
 import team3.FinalBuildWeek.auth.user.UserSRV;
-import team3.FinalBuildWeek.exception.UnauthorizedException;
+import team3.FinalBuildWeek.exceptions.UnauthorizedException;
 
 import java.io.IOException;
 

@@ -1,6 +1,6 @@
 package team3.FinalBuildWeek.enums;
 
-public enum Tipo {
+public enum Type {
     PA,
     SAS,
     SRL,
