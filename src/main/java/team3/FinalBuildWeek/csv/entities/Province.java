@@ -1,11 +1,13 @@
 package team3.FinalBuildWeek.csv.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Set;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -14,9 +16,11 @@ import java.util.Set;
 @NoArgsConstructor
 
 public class Province {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue
+    @Column(name = "id",nullable = false)
+    private UUID id;
     private String acronym;
     private String Province;
     private String Region;
