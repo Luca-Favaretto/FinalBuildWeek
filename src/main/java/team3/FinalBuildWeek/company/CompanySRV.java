@@ -11,6 +11,7 @@ import team3.FinalBuildWeek.customer.Customer;
 import team3.FinalBuildWeek.customer.CustomerDAO;
 import team3.FinalBuildWeek.exceptions.NotFoundException;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -53,6 +54,10 @@ public class CompanySRV {
         found.setLast_contact_date(companyDTO.last_contact_date());
         found.setType(companyDTO.type());
        return companyDAO.save(found);
+    }
+
+    public List<Object[]> getAziendeOrdinatePerFatturatoAnnuo() {
+        return companyDAO.getAziendeOrdinatePerFatturatoAnnuo();
     }
 
 

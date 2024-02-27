@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -15,7 +16,7 @@ public class CompanyCTRL {
     private CompanySRV companySRV;
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
+
     public Company saveCompany(@RequestBody CompanyDTO companyDTO){
         return companySRV.save(companyDTO);
     }
@@ -26,13 +27,29 @@ public class CompanyCTRL {
         return companySRV.updateCompany(id,companyDTO);
     }
 
-    @GetMapping
+    @GetMapping("/orderByName")
     @PreAuthorize("hasAuthority('USER')")
-    public Page<Company> getAll(@RequestParam(defaultValue = "0") int pageNumber,
+    public Page<Company> getAllforName(@RequestParam(defaultValue = "0") int pageNumber,
                                  @RequestParam(defaultValue = "10") int pageSize,
                                  @RequestParam(defaultValue = "business_name") String orderBy) {
         return companySRV.getAll(pageNumber, pageSize, orderBy);
     }
+
+//    @GetMapping("/orderByInsertionDate")
+//    @PreAuthorize("hasAuthority('USER')")
+//    public Page<Company> getAllforContactDate(@RequestParam(defaultValue = "0") int pageNumber,
+//                                 @RequestParam(defaultValue = "10") int pageSize,
+//                                 @RequestParam(defaultValue = "last_contact_date") String orderBy) {
+//        return companySRV.getAll(pageNumber, pageSize, orderBy);
+//    }
+
+//    @GetMapping("/orderByInsertionDate")
+//    @PreAuthorize("hasAuthority('USER')")
+//    public Page<Company> getAllforInsertionDate(@RequestParam(defaultValue = "0") int pageNumber,
+//                                 @RequestParam(defaultValue = "10") int pageSize,
+//                                 @RequestParam(defaultValue = "insertion_date") String orderBy) {
+//        return companySRV.getAll(pageNumber, pageSize, orderBy);
+//    }
 
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('USER')")
@@ -44,5 +61,11 @@ public class CompanyCTRL {
     @PreAuthorize("hasAuthority('ADMIN')")
     public void deleteCompany(@PathVariable UUID id){
          companySRV.deleteCompany(id);
+    }
+
+
+    @GetMapping
+    public List<Object[]> getCompanyForAmount(){
+        return companySRV.getAziendeOrdinatePerFatturatoAnnuo();
     }
 }
