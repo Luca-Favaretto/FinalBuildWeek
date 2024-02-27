@@ -21,10 +21,10 @@ public class Municipality {
     private UUID id;
     private String municipalName;
     private String city;
-    @ManyToOne
-    private Province province;
 
-    public Municipality(String municipalName, String city, Province province) {
+    private String province;
+
+    public Municipality(String municipalName, String city, String province) {
         this.municipalName = municipalName;
         this.city = city;
         this.province = province;
