@@ -7,19 +7,20 @@ import team3.FinalBuildWeek.csv.DAO.MunicipalityDAO;
 import team3.FinalBuildWeek.csv.DAO.ProvinceDAO;
 import team3.FinalBuildWeek.csv.entities.Province;
 
-
 @Service
-public class provinceSRV  {
+public class provinceSRV {
 
     @Autowired
     ProvinceDAO provinceDAO;
 
     @Autowired
+    private MunicipalityDAO municipalityDAO;
     CsvRunner csvRunner;
 
 
 
-
-
+    public void salvaProvincia(Province province) {
+        provinceDAO.save(province);
+    }
 
 }

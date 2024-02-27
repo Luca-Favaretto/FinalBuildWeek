@@ -4,6 +4,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import team3.FinalBuildWeek.csv.entities.Province;
 
+import java.util.UUID;
+
 @Repository
-public interface ProvinceDAO extends JpaRepository<Province,Long> {
+public interface ProvinceDAO extends JpaRepository<Province, UUID> {
+
+
+
 }

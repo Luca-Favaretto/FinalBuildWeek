@@ -13,9 +13,9 @@ public class CustomerCTRL {
 
     @Autowired
     public CustomerSRV customerSRV;
-    @PostMapping
-    public Customer saveCustomer(@RequestBody CustomerDTO customerDTO){
-        return customerSRV.save(customerDTO);
-    }
+//    @PostMapping
+//    public Customer saveCustomer(@RequestBody CustomerDTO customerDTO){
+//        return customerSRV.save(customerDTO);
+//    }
 
 }

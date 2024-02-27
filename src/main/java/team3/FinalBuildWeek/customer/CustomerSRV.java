@@ -10,8 +10,7 @@ public class CustomerSRV {
     @Autowired
     CustomerDAO customerDAO;
 
-    public Customer save(CustomerDTO customerDTO) {
-        Customer customer= new Customer(customerDTO.name(), customerDTO.surname(),customerDTO.email(), customerDTO.phone() );
-        return customerDAO.save(customer);
-    }
+
+
+
 }
