@@ -37,7 +37,9 @@ public class CsvRunner implements CommandLineRunner {
                 .withSkipLines(1)
                 .build()){
             List<String[]> r = reader.readAll();
+
             r.forEach(x -> provinceDAO.save(new Province(x[0],x[1],x[2])) );
+           ;
         }
 
         CSVParser csvParser2 = new CSVParserBuilder().withSeparator(';').build();
