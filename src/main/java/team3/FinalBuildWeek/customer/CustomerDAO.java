@@ -10,4 +10,6 @@ import java.util.UUID;
 @Repository
 public interface CustomerDAO extends JpaRepository<Customer, UUID> {
     Optional<Customer> findByEmail(String email);
+
+
 }

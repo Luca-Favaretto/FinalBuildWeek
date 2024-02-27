@@ -15,11 +15,11 @@ public class CustomerCTRL {
 
     @Autowired
     public CustomerSRV customerSRV;
+
     @Autowired
     private CustomerDAO customerDAO;
 
     @PostMapping
-
     public Customer saveCustomer(@RequestBody CustomerDTO customerDTO){
         return customerSRV.save(customerDTO);
     }
