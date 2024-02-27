@@ -11,6 +11,7 @@ import team3.FinalBuildWeek.customer.CustomerDAO;
 import team3.FinalBuildWeek.customer.CustomerSRV;
 import team3.FinalBuildWeek.exceptions.NotFoundException;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -50,8 +51,18 @@ public class InvoiceSRV {
         Invoice found = this.findById(invoiceId);
         invoiceDAO.delete(found);
     }
-    public List<Invoice>findInvoiceByCustomer(String email){
+    public List<Invoice>getInvoiceByCustomer(String email){
         Customer customer= customerSRV.findByEmail(email);
-       return invoiceDAO.findInvoiceByCustomer(customer);
+       return invoiceDAO.getInvoiceByCustomer(customer);
+    }
+    public List<Invoice> findByInvoiceStatus(String invoiceStatus){
+        return invoiceDAO.findByInvoiceStatus(invoiceStatus);
+    }
+    public List<Invoice> findInvoicesByDate(LocalDate date){
+        return invoiceDAO.findInvoicesByDate(date);
+    }
+    public List<Invoice> findInvoicesByYear(int year){
+
+        return invoiceDAO.findInvoicesByYear(year);
     }
 }
