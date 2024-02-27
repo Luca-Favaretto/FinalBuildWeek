@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -23,6 +24,9 @@ public class InvoiceCTRL {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    public Invoice save(@RequestBody InvoiceDTO invoiceDTO){
+       return invoiceSRV.save(invoiceDTO);
+    }
 
 
     @GetMapping("/{id}")
@@ -41,4 +45,8 @@ public class InvoiceCTRL {
         this.invoiceSRV.findByIdAndDelete(id);
     }
 
+    @GetMapping("/emailCustomer")
+    public List<Invoice> findInvoiceByCustomer(@PathVariable String email){
+        return this.findInvoiceByCustomer(email);
+    }
 }
