@@ -29,14 +29,11 @@ public class AddressSRV {
     }
 
     public Address findById(UUID id) {
-
         return addressDAO.findById(id).orElseThrow(() -> new NotFoundException(id));
     }
-
 
     public void deleteById(UUID id) {
         Address found = findById(id);
         addressDAO.delete(found);
     }
-
 }
