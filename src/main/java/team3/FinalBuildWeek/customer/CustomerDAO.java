@@ -13,7 +13,7 @@ import java.util.UUID;
 public interface CustomerDAO extends JpaRepository<Customer, UUID> {
     Optional<Customer> findByEmail(String email);
 
-    @Query("SELECT c FROM Customer c JOIN c.invoices inv WHERE YEAR (inv.date) = :date GROUP BY c HAVING SUM(inv.amount) > :value")
+    @Query("SELECT c FROM Customer c JOIN c.invoices inv WHERE YEAR(inv.date) = :year GROUP BY c HAVING SUM(inv.amount) > :value")
     public List<Customer> getByAnnualRevenue(double value, int year);
 
 
