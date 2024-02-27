@@ -30,13 +30,13 @@ public class UserCTRL {
     }
 
 
-    @PutMapping("/{id}")
+    @PutMapping("me/{id}")
     @PreAuthorize("hasAuthority('USER')")
     public User findByIdAndUpdate(@PathVariable UUID id, @RequestBody UserDTO eventDTO, @AuthenticationPrincipal User currentAuthenticatedUser) {
         return userSRV.findByIdAndUpdate(id, eventDTO, currentAuthenticatedUser);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("me/{id}")
     @PreAuthorize("hasAuthority('USER')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteAuthorById(@PathVariable UUID id, @AuthenticationPrincipal User currentAuthenticatedUser) {
