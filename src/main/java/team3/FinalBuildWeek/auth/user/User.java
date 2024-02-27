@@ -1,9 +1,7 @@
 package team3.FinalBuildWeek.auth.user;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,14 +10,14 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import team3.FinalBuildWeek.enums.Role;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
+@Table(name = "user")
+@JsonIgnoreProperties({"password", "credentialsNonExpired", "accountNonExpired", "authorities",  "accountNonLocked", "enabled"})
 public class User implements UserDetails {
     @Id
     @GeneratedValue
@@ -32,7 +30,8 @@ public class User implements UserDetails {
     private String password;
     private String email;
     private String avatar;
-    private Role role;
+    @Enumerated (EnumType.STRING)
+    private Set<Role> roles=new HashSet<>();
 
     public User(String name, String surname, String username,String password, String email, String avatar) {
         this.name = name;
@@ -41,12 +40,12 @@ public class User implements UserDetails {
         this.password=password;
         this.email = email;
         this.avatar = avatar;
-        this.role = Role.USER;
+        this.roles.add(Role.USER);
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(this.role.name()));
+        return roles.stream().map(el->new SimpleGrantedAuthority(el.name())).toList();
     }
 
 
