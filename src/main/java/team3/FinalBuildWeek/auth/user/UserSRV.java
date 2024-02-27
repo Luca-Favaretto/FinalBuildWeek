@@ -39,8 +39,7 @@ public class UserSRV {
     }
 
     public User findByEmail(String email) {
-        return userDAO.findByEmail(email).orElseThrow(() -> new NotFoundException("Email " + email + " don't found"));
-
+        return userDAO.findByEmail(email).orElseThrow(() -> new NotFoundException(email ));
     }
     public User findByIdAndUpdate(UUID id, UserDTO userDTO,User user){
         User found= findById(UUID.fromString(String.valueOf(id)));

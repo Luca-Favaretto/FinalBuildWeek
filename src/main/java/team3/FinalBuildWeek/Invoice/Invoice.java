@@ -1,10 +1,12 @@
 package team3.FinalBuildWeek.Invoice;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import team3.FinalBuildWeek.customer.Customer;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Getter
@@ -16,9 +18,9 @@ import java.util.UUID;
 public class Invoice {
     @Id
     @GeneratedValue
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private UUID id;
-    private Date date;
+    private LocalDate date;
     private double amount;
     private String invoiceNumber;
     private String invoiceStatus;
@@ -26,7 +28,7 @@ public class Invoice {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    public Invoice(Date date, double amount, String invoiceNumber, String invoiceStatus, Customer customer) {
+    public Invoice(LocalDate date, double amount, String invoiceNumber, String invoiceStatus, Customer customer) {
         this.date = date;
         this.amount = amount;
         this.invoiceNumber = invoiceNumber;

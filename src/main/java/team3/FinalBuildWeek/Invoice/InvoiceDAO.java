@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Repository
 public interface InvoiceDAO extends JpaRepository<Invoice, UUID> {
-    Optional<Invoice> findById(UUID uuid);
+    
 
 
 }

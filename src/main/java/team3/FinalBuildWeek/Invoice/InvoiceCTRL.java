@@ -14,11 +14,11 @@ public class InvoiceCTRL {
     private InvoiceSRV invoiceSRV;
 
     @GetMapping
-    public Page<Invoice> getAllInvoice(@RequestParam(defaultValue = "0") int page,
+    public Page<Invoice> getAll(@RequestParam(defaultValue = "0") int page,
                                        @RequestParam(defaultValue = "10") int size,
                                        @RequestParam(defaultValue = "id") String orderBy
                                        ) {
-        return this.invoiceSRV.getInvoice(page, size, orderBy);
+        return this.invoiceSRV.getAll(page, size, orderBy);
     }
 
     @PostMapping
@@ -31,7 +31,7 @@ public class InvoiceCTRL {
     }
 
     @PutMapping("/{id}")
-    public Invoice findByIdAndUpdate(@PathVariable UUID id, @RequestBody Invoice updateInvoice){
+    public Invoice findByIdAndUpdate(@PathVariable UUID id, @RequestBody InvoiceDTO updateInvoice){
         return this.invoiceSRV.findByIdAndUpdate(id, updateInvoice);
     }
 

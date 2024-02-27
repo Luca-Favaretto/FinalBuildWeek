@@ -6,7 +6,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import team3.FinalBuildWeek.customer.Customer;
 import team3.FinalBuildWeek.customer.CustomerDAO;
+import team3.FinalBuildWeek.customer.CustomerSRV;
 import team3.FinalBuildWeek.exceptions.NotFoundException;
 
 import java.util.UUID;
@@ -16,30 +18,30 @@ public class InvoiceSRV {
     @Autowired
     private InvoiceDAO invoiceDAO;
     @Autowired
-    private CustomerDAO customerDAO;
+    private CustomerSRV customerSRV;
 
-    public Page<Invoice> getInvoice(int pageNumber, int size, String orderBy) {
+    public Page<Invoice> getAll(int pageNumber, int size, String orderBy) {
         if (size > 100) size = 100;
         Pageable pageable = PageRequest.of(pageNumber, size, Sort.by(orderBy));
         return invoiceDAO.findAll(pageable);
     }
 
-    /*public Invoice saveInvoice(InvoiceDTO newInvoice) {
-        invoiceDAO.findById(newInvoice.getId()).ifPresent(invoiceDAO::save);
-        return invoiceDAO.save(newInvoice);
-    }*/
-
+    public Invoice save(InvoiceDTO invoiceDTO) {
+      Customer customer=  customerSRV.findByEmail(invoiceDTO.email());
+        return invoiceDAO.save(new Invoice(invoiceDTO.date(),invoiceDTO.amount(),invoiceDTO.invoiceNumber(),invoiceDTO.invoiceStatus(),customer));
+    }
     public Invoice findById(UUID invoiceId) {
         return invoiceDAO.findById(invoiceId).orElseThrow(() -> new NotFoundException(invoiceId));
     }
 
-    public Invoice findByIdAndUpdate(UUID invoiceId, Invoice modifiedInvoice){
+    public Invoice findByIdAndUpdate(UUID invoiceId,InvoiceDTO invoiceDTO){
         Invoice found = this.findById(invoiceId);
-        found.setDate(modifiedInvoice.getDate());
-        found.setAmount(modifiedInvoice.getAmount());
-        found.setInvoiceNumber(modifiedInvoice.getInvoiceNumber());
-        found.setInvoiceStatus(modifiedInvoice.getInvoiceStatus());
-        found.setCustomer(modifiedInvoice.getCustomer());
+        Customer customer=customerSRV.findByEmail(invoiceDTO.email());
+        found.setDate(invoiceDTO.date());
+        found.setAmount(invoiceDTO.amount());
+        found.setInvoiceNumber(invoiceDTO.invoiceNumber());
+        found.setInvoiceStatus(invoiceDTO.invoiceStatus());
+        found.setCustomer(customer);
         return invoiceDAO.save(found);
     }
 
