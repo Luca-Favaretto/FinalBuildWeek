@@ -1,5 +1,6 @@
 package team3.FinalBuildWeek.Invoice;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -24,6 +25,7 @@ public class Invoice {
     private double amount;
     private String invoiceNumber;
     private String invoiceStatus;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
