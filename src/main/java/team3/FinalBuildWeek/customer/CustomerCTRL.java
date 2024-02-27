@@ -7,6 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.nio.file.AccessDeniedException;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -48,6 +49,12 @@ public class CustomerCTRL {
                              @RequestParam(defaultValue = "10") int pageSize,
                              @RequestParam(defaultValue = "name") String orderBy) {
         return customerSRV.getAll(pageNumber, pageSize, orderBy);
+    }
+
+    @GetMapping("/query")
+
+    public List<Customer> getByAnnualRevenue(@RequestParam(defaultValue = "100") double value,@RequestParam(defaultValue = "2024") int year){
+        return customerDAO.getByAnnualRevenue(value, year);
     }
 
 }

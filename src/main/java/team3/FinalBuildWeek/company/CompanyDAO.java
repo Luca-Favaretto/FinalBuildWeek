@@ -18,6 +18,10 @@ public interface CompanyDAO extends JpaRepository<Company, UUID> {
                "GROUP BY c.business_name, EXTRACT(YEAR FROM i.date) " +
                "ORDER BY fatturatoAnnuo DESC")
        List<Object[]> getAziendeOrdinatePerFatturatoAnnuo();
+
+
+
+
 }
 
 

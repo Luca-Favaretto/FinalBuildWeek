@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import team3.FinalBuildWeek.exceptions.NotFoundException;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -50,5 +51,10 @@ public class CustomerSRV {
     public Customer findByEmail(String email){
         return customerDAO.findByEmail(email).orElseThrow(()-> new NotFoundException("customer non trovato"));
     }
+
+    public List<Customer> getByAnnualRevenue(double value, int year){
+        return customerDAO.getByAnnualRevenue(value, year);
+    }
+
 
 }
