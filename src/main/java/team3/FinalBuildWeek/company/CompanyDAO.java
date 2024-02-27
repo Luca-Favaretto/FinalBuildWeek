@@ -1,5 +1,7 @@
 package team3.FinalBuildWeek.company;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -18,6 +20,12 @@ public interface CompanyDAO extends JpaRepository<Company, UUID> {
                "GROUP BY c.business_name, EXTRACT(YEAR FROM i.date) " +
                "ORDER BY fatturatoAnnuo DESC")
        List<Object[]> getAziendeOrdinatePerFatturatoAnnuo();
+
+
+       @Query("SELECT c FROM Company c ORDER BY LOWER(c.business_name)")
+       Page<Company> getAllOrderedByName(Pageable pageable);
+       @Query("SELECT c FROM Company c ORDER BY (c.insertion_date)")
+       Page<Company> getAllOrderedByInsertionDate(Pageable pageable);
 }
 
 

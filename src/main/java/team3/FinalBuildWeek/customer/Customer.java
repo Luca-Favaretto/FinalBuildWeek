@@ -1,13 +1,12 @@
 package team3.FinalBuildWeek.customer;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import team3.FinalBuildWeek.Invoice.Invoice;
-
 import team3.FinalBuildWeek.company.Company;
 
 import java.util.Set;
@@ -25,6 +24,7 @@ public class Customer {
     private String surname;
     private String phone;
     private String email;
+    @JsonIgnore
     @OneToOne(mappedBy = "customer")
     private Company company;
     @OneToMany(mappedBy = "customer")
