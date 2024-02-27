@@ -21,11 +21,11 @@ public class Invoice {
     private Date date;
     private double amount;
     private String invoiceNumber;
-    private char invoiceStatus;
+    private String invoiceStatus;
     @ManyToOne
     private Customer customer;
 
-    public Invoice(Date date, double amount, String invoiceNumber, char invoiceStatus, Customer customer) {
+    public Invoice(Date date, double amount, String invoiceNumber, String invoiceStatus, Customer customer) {
         this.date = date;
         this.amount = amount;
         this.invoiceNumber = invoiceNumber;

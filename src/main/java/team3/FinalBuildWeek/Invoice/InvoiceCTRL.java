@@ -21,16 +21,9 @@ public class InvoiceCTRL {
         return this.invoiceSRV.getInvoice(page, size, orderBy);
     }
 
-    /*@PostMapping
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Invoice saveInvoice(@RequestBody @Validated InvoiceDTO newInvoice, BindingResult validation) {
 
-        if (validation.hasErrors()) {
-            throw new BadRequestException(validation.getAllErrors());
-        }
-
-        return this.invoiceSRV.saveInvoice(newInvoice);
-    }*/
 
     @GetMapping("/{id}")
     public Invoice findById(@PathVariable UUID id) {
