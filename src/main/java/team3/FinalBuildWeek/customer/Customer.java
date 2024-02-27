@@ -25,10 +25,8 @@ public class Customer {
     private String surname;
     private String phone;
     private String email;
-    @OneToOne
-    @JoinColumn(name = "company_id")
+    @OneToOne(mappedBy = "customer")
     private Company company;
-
     @OneToMany(mappedBy = "customer")
     private Set<Invoice> invoices;
 
