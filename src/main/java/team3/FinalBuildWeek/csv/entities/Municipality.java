@@ -22,9 +22,15 @@ public class Municipality {
     private String municipalName;
     private String city;
 
-    private String province;
 
-    public Municipality(String municipalName, String city, String province) {
+
+    @ManyToOne
+    @JoinColumn(name = "province_id")
+    private Province province;
+
+
+
+    public Municipality(String municipalName, String city, Province province) {
         this.municipalName = municipalName;
         this.city = city;
         this.province = province;

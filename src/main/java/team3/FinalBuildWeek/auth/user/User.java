@@ -38,12 +38,13 @@ public class User implements UserDetails {
         this.name = name;
         this.surname = surname;
         this.username = username;
-        this.password=password;
+        this.password = password;
         this.email = email;
         this.avatar = avatar;
-        this.role = Role.USER;
-    }
 
+        this.role = Role.USER;
+
+    }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(this.role.name()));

@@ -1,11 +1,12 @@
 package team3.FinalBuildWeek.address;
 
 import jakarta.persistence.*;
-import lombok.*;
-
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import team3.FinalBuildWeek.company.Company;
-
-
+import team3.FinalBuildWeek.csv.entities.Municipality;
 
 import java.util.UUID;
 
@@ -24,17 +25,18 @@ public class Address {
     private String Location;
     @Column(name="post_code")
     private int PostCode;
-    private String cityHall;
+
+    @ManyToOne
+    private Municipality municipality;
 
     @ManyToOne
     private Company company;
 
-
-    public Address(String address, int number, String location, int postCode, String cityHall) {
+    public Address(String address, int number, String location, int postCode) {
         this.address = address;
         this.number = number;
         Location = location;
         PostCode = postCode;
-        this.cityHall = cityHall;
+
     }
 }

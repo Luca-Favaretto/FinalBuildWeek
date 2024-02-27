@@ -23,7 +23,7 @@ public class AddressSRV {
     }
 
     public Address save(AddressDTO addressDTO) {
-        Address address = new Address(addressDTO.address(), addressDTO.number(), addressDTO.Location(), addressDTO.PostCode(), addressDTO.cityHall());
+        Address address = new Address(addressDTO.address(), addressDTO.number(), addressDTO.Location(), addressDTO.PostCode());
 
         return addressDAO.save(address);
     }
@@ -31,6 +31,17 @@ public class AddressSRV {
     public Address findById(UUID id) {
 
         return addressDAO.findById(id).orElseThrow(() -> new NotFoundException(id));
+    }
+
+
+
+    public Address findByIdAndUpdate(UUID id, Address modifiedAddress){
+        Address found = this.findById(id);
+        found.setAddress(modifiedAddress.getAddress());
+        found.setNumber(modifiedAddress.getNumber());
+        found.setLocation(modifiedAddress.getLocation());
+        found.setPostCode(modifiedAddress.getPostCode());
+        return addressDAO.save(found);
     }
 
 
