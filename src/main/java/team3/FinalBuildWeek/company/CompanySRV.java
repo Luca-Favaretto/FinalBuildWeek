@@ -24,7 +24,7 @@ public class CompanySRV {
 
     public Company save(CompanyDTO companyDTO) {
         Customer customer = customerDAO.findByEmail(companyDTO.customer_email()).orElseThrow(()-> new NotFoundException(companyDTO.email()));
-        Company company= new Company(companyDTO.business_name(), companyDTO.vat_number(),companyDTO.email(), companyDTO.phone_number(), companyDTO.logo(), companyDTO.insertion_date(),companyDTO.last_contact_date(),customer,companyDTO.type());
+        Company company= new Company(companyDTO.business_name(), companyDTO.vat_number(),companyDTO.email(), companyDTO.phone_number(), companyDTO.logo(), companyDTO.insertion_date(),companyDTO.last_contact_date(),customer,companyDTO.getType());
         return companyDAO.save(company);
     }
 
@@ -52,7 +52,7 @@ public class CompanySRV {
         found.setLogo(companyDTO.logo());
         found.setInsertion_date(companyDTO.insertion_date());
         found.setLast_contact_date(companyDTO.last_contact_date());
-        found.setType(companyDTO.type());
+        found.setType(companyDTO.getType());
        return companyDAO.save(found);
     }
 
