@@ -1,13 +1,23 @@
 package team3.FinalBuildWeek.company;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.UUID;
 
 @Repository
 public interface CompanyDAO extends JpaRepository<Company, UUID> {
        boolean existsByEmail(String email);
 
-
+       @Query("SELECT c.business_name, EXTRACT(YEAR FROM i.date) AS anno, SUM(i.amount) AS fatturatoAnnuo " +
+               "FROM Company c " +
+               "JOIN Customer cust ON c.customer.id = cust.id " +
+               "JOIN Invoice i ON cust.id = i.customer.id " +
+               "GROUP BY c.business_name, EXTRACT(YEAR FROM i.date) " +
+               "ORDER BY fatturatoAnnuo DESC")
+       List<Object[]> getAziendeOrdinatePerFatturatoAnnuo();
 }
+
+

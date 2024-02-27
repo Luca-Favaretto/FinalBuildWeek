@@ -19,7 +19,7 @@ public class CustomerCTRL {
     private CustomerDAO customerDAO;
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
+
     public Customer saveCustomer(@RequestBody CustomerDTO customerDTO){
         return customerSRV.save(customerDTO);
     }
