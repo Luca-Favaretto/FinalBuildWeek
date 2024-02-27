@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import team3.FinalBuildWeek.customer.Customer;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +23,7 @@ public interface InvoiceDAO extends JpaRepository<Invoice, UUID> {
     List<Invoice> findInvoicesByDate(LocalDate date);
     @Query("SELECT i FROM Invoice i WHERE YEAR(i.date) = :year")
     List<Invoice> findInvoicesByYear(int year);
-
+    @Query("SELECT i FROM Invoice i WHERE i.amount BETWEEN :firstValue AND :secondValue")
+    List<Invoice> findInvoicesByAmountRange(double firstValue,double secondValue);
 
 }

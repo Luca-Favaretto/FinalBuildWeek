@@ -11,6 +11,7 @@ import team3.FinalBuildWeek.customer.CustomerDAO;
 import team3.FinalBuildWeek.customer.CustomerSRV;
 import team3.FinalBuildWeek.exceptions.NotFoundException;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
@@ -62,7 +63,9 @@ public class InvoiceSRV {
         return invoiceDAO.findInvoicesByDate(date);
     }
     public List<Invoice> findInvoicesByYear(int year){
-
         return invoiceDAO.findInvoicesByYear(year);
+    }
+    List<Invoice> findInvoicesByAmountRange(double firstValue, double secondValue){
+        return invoiceDAO.findInvoicesByAmountRange(firstValue,secondValue);
     }
 }

@@ -62,4 +62,11 @@ public class InvoiceCTRL {
     public List<Invoice> findInvoicesByYear(@PathVariable int year){
         return invoiceSRV.findInvoicesByYear(year);
     }
+    @GetMapping("/value")
+    public List<Invoice> findInvoicesByAmountRange(
+            @RequestParam(defaultValue = "10") double firstValue,
+            @RequestParam(defaultValue = "100") double secondValue) {
+        return invoiceSRV.findInvoicesByAmountRange(firstValue, secondValue);
+    }
+
 }
