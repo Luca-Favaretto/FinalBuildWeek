@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -45,8 +46,27 @@ public class InvoiceCTRL {
         this.invoiceSRV.findByIdAndDelete(id);
     }
 
-    @GetMapping("/emailCustomer")
+    @GetMapping("/email/{email}")
     public List<Invoice> findInvoiceByCustomer(@PathVariable String email){
-        return this.findInvoiceByCustomer(email);
+        return this.invoiceSRV.getInvoiceByCustomer(email);
     }
+    @GetMapping("/status/{status}")
+    public   List<Invoice> findByInvoiceStatus(@PathVariable String status){
+        return this.invoiceSRV.findByInvoiceStatus(status);
+    }
+    @GetMapping("/date/{date}")
+    public List<Invoice> findInvoicesByDate(@PathVariable LocalDate date){
+        return invoiceSRV.findInvoicesByDate(date);
+    }
+    @GetMapping("/year/{year}")
+    public List<Invoice> findInvoicesByYear(@PathVariable int year){
+        return invoiceSRV.findInvoicesByYear(year);
+    }
+    @GetMapping("/value")
+    public List<Invoice> findInvoicesByAmountRange(
+            @RequestParam(defaultValue = "10") double firstValue,
+            @RequestParam(defaultValue = "100") double secondValue) {
+        return invoiceSRV.findInvoicesByAmountRange(firstValue, secondValue);
+    }
+
 }
