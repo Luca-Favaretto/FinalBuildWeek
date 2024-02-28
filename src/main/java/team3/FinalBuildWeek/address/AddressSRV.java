@@ -23,7 +23,7 @@ public class AddressSRV {
     }
 
     public Address save(AddressDTO addressDTO) {
-        Address address = new Address(addressDTO.address(), addressDTO.number(), addressDTO.Location(), addressDTO.PostCode());
+        Address address = new Address(addressDTO.address(), addressDTO.number(), addressDTO.location(), addressDTO.postCode());
 
         return addressDAO.save(address);
     }

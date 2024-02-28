@@ -22,9 +22,9 @@ public class Address {
     private UUID id;
     private String address;
     private int number;
-    private String Location;
+    private String location;
     @Column(name="post_code")
-    private int PostCode;
+    private int postCode;
 
     @ManyToOne
     private Municipality municipality;
@@ -35,8 +35,8 @@ public class Address {
     public Address(String address, int number, String location, int postCode) {
         this.address = address;
         this.number = number;
-        Location = location;
-        PostCode = postCode;
+        this.location = location;
+        this.postCode = postCode;
 
     }
 }

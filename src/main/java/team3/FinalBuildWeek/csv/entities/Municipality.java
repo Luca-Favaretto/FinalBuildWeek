@@ -22,8 +22,6 @@ public class Municipality {
     private String municipalName;
     private String city;
 
-
-
     @ManyToOne
     @JoinColumn(name = "province_id")
     private Province province;
