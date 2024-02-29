@@ -14,6 +14,7 @@ import team3.FinalBuildWeek.exceptions.NotFoundException;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -60,12 +61,12 @@ public class AddressSRV {
     }
 
 
-
-
-
     public void deleteById(UUID id) {
         Address found = findById(id);
         addressDAO.delete(found);
     }
+
+
+
 
 }

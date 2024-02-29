@@ -67,6 +67,9 @@ public class CompanySRV {
     public List<Company> getCompaniesByPartialName(String partialName) {
         return companyDAO.getCompaniesByPartialName("%" + partialName.toLowerCase() + "%");
     }
+    public Company findByBusinessName(String name){
+        return companyDAO.findByBusinessName(name).orElseThrow(()->new NotFoundException(name));
+    };
 
 
 }
