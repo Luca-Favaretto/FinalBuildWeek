@@ -60,5 +60,9 @@ public class CompanySRV {
         return companyDAO.getAziendeOrdinatePerFatturatoAnnuo();
     }
 
+    public List<Company> getCompaniesByPartialName(String partialName) {
+        return companyDAO.getCompaniesByPartialName("%" + partialName.toLowerCase() + "%");
+    }
+
 
 }

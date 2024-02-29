@@ -75,4 +75,10 @@ public class CompanyCTRL {
     public List<Object[]> getInvoicesOrderedByAmount() {
         return companySRV.getAziendeOrdinatePerFatturatoAnnuo();
     }
+
+    @GetMapping("/orderByPartialName")
+    @PreAuthorize("hasAuthority('USER')")
+    public List<Company> getCompaniesByPartialName(@RequestParam(name = "partialName") String partialName) {
+       return companySRV.getCompaniesByPartialName(partialName);
+    }
 }
