@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import team3.FinalBuildWeek.csv.DAO.MunicipalityDAO;
 
 import team3.FinalBuildWeek.csv.entities.Municipality;
+import team3.FinalBuildWeek.exceptions.NotFoundException;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,5 +37,8 @@ public class MunicipalitySRV {
     public Municipality save (Municipality municipality){
        return municipalityDAO.save(municipality);
     }
+   public Municipality findByMunicipalName(String name){
+        return municipalityDAO.findByMunicipalName(name).orElseThrow(()->new NotFoundException(name));
+   };
 }
 
