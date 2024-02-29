@@ -3,8 +3,12 @@ package team3.FinalBuildWeek.Invoice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import team3.FinalBuildWeek.exceptions.BadRequestException;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
@@ -25,7 +29,10 @@ public class InvoiceCTRL {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Invoice save(@RequestBody InvoiceDTO invoiceDTO){
+    public Invoice save(@RequestBody @Validated InvoiceDTO invoiceDTO, BindingResult validation)throws IOException {
+        if (validation.hasErrors()) {
+            throw new BadRequestException(validation.getAllErrors());
+        }
        return invoiceSRV.save(invoiceDTO);
     }
 

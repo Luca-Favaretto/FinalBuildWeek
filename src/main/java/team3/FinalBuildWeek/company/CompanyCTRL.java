@@ -7,9 +7,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import team3.FinalBuildWeek.customer.Customer;
 
+import team3.FinalBuildWeek.exceptions.BadRequestException;
+
+
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
@@ -30,8 +34,12 @@ public class CompanyCTRL {
         return companySRV.getAll(pageNumber, pageSize, orderBy);
     }
 
+
     @PostMapping
-    public Company saveCompany(@RequestBody CompanyDTO companyDTO){
+    public Company saveCompany(@RequestBody CompanyDTO companyDTO, BindingResult validation)throws IOException {
+        if (validation.hasErrors()) {
+            throw new BadRequestException(validation.getAllErrors());
+        }
         return companySRV.save(companyDTO);
     }
 

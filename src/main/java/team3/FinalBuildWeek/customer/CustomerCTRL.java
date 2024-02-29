@@ -4,8 +4,11 @@ package team3.FinalBuildWeek.customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import team3.FinalBuildWeek.exceptions.BadRequestException;
 
+import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.util.List;
 import java.util.UUID;
@@ -21,7 +24,10 @@ public class CustomerCTRL {
     private CustomerDAO customerDAO;
 
     @PostMapping
-    public Customer saveCustomer(@RequestBody CustomerDTO customerDTO){
+    public Customer saveCustomer(@RequestBody CustomerDTO customerDTO, BindingResult validation)throws IOException {
+        if (validation.hasErrors()) {
+            throw new BadRequestException(validation.getAllErrors());
+        }
         return customerSRV.save(customerDTO);
     }
 
