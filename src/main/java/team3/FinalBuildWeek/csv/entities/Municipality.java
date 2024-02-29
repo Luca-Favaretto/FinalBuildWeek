@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import team3.FinalBuildWeek.address.Address;
 
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -26,8 +27,8 @@ public class Municipality {
     @ManyToOne
     @JoinColumn(name = "province_id")
     private Province province;
-    @OneToMany
-    private Address address;
+    @OneToMany(mappedBy = "municipality")
+    private List<Address> address;
 
 
 

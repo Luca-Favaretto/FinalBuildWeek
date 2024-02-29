@@ -15,8 +15,7 @@ import java.util.UUID;
 public interface CompanyDAO extends JpaRepository<Company, UUID> {
        boolean existsByEmail(String email);
 
-       Company findByBuisnessName(String buisnessName);
-
+    
        @Query("SELECT c.business_name, EXTRACT(YEAR FROM i.date) AS anno, SUM(i.amount) AS fatturatoAnnuo " +
                "FROM Company c " +
                "JOIN Customer cust ON c.customer.id = cust.id " +

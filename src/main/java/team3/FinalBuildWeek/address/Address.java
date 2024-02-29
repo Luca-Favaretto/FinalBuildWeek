@@ -28,8 +28,10 @@ public class Address {
 
     private int postCode;
     @ManyToOne
+    @JoinColumn(name = "municipality_id")
     private Municipality municipality;
     @ManyToOne
+    @JoinColumn(name = "company_id")
     private Company company;
 
 
