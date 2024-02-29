@@ -22,23 +22,13 @@ import java.util.UUID;
 
 @Component
 public class JWTFilter extends OncePerRequestFilter {
-
     @Autowired
     private JWTTools jwtTools;
     @Autowired
     private UserSRV userSRV;
 
-//    @Autowired
-//    @Qualifier("HandlerExceptionResolver")
-//    HandlerExceptionResolver handler;
-
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-//        try {
-//            filterChain.doFilter(request,response);
-//        }catch (Exception ex){
-//            this.handler.resolveException(request,response,null,ex);
-//        }
 
         String authHeader = request.getHeader("Authorization");
         if (authHeader == null || !authHeader.startsWith("Bearer "))

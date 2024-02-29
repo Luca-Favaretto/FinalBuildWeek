@@ -23,12 +23,16 @@ public class AuthConfig {
     @Autowired
     private JWTFilter jwtFilter;
 
+    @Autowired
+    private Filter handler;
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
         httpSecurity.formLogin(AbstractHttpConfigurer::disable);
         httpSecurity.csrf(AbstractHttpConfigurer::disable);
         httpSecurity.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+
+        httpSecurity.addFilterBefore(handler, UsernamePasswordAuthenticationFilter.class);
 
         httpSecurity.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
@@ -41,7 +45,7 @@ public class AuthConfig {
     CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowedOrigins(Arrays.asList("http://localhost:4201", "https://mywonderfulfrontend.com")); //CAMBIA IL SECONDO CON QUELLO GIUSTO
+        config.setAllowedOrigins(Arrays.asList("http://localhost:4200", "https://mywonderfulfrontend.com"));
         config.setAllowedMethods(Arrays.asList("*"));
         config.setAllowedHeaders(Arrays.asList("*"));
 
