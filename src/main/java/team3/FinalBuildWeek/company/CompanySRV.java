@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import team3.FinalBuildWeek.customer.Customer;
 import team3.FinalBuildWeek.customer.CustomerDAO;
+import team3.FinalBuildWeek.exceptions.BadRequestException;
 import team3.FinalBuildWeek.exceptions.NotFoundException;
 
 import java.time.LocalDate;
@@ -25,8 +26,12 @@ public class CompanySRV {
 
     public Company save(CompanyDTO companyDTO) {
         Customer customer = customerDAO.findByEmail(companyDTO.customer_email()).orElseThrow(()-> new NotFoundException(companyDTO.email()));
+        if(customer.getCompany()==null){
         Company company= new Company(companyDTO.business_name(), companyDTO.vat_number(),companyDTO.email(), companyDTO.phone_number(), companyDTO.logo(), companyDTO.insertion_date(),companyDTO.last_contact_date(),customer,companyDTO.getType());
         return companyDAO.save(company);
+        }else {
+            throw new BadRequestException("Client can have only one company");
+        }
     }
 
     public Page<Company> getAll(int pageNumber, int pageSize, String orderBy) {
@@ -60,8 +65,10 @@ public class CompanySRV {
     public List<Object[]> getAziendeOrdinatePerFatturatoAnnuo() {
         return companyDAO.getAziendeOrdinatePerFatturatoAnnuo();
     }
-    public List<Company> findCompanyByDate (LocalDate date){
-        return companyDAO.findCompanyByDate(date);
+    public List<Company> findCompanyByInsertDate (LocalDate date){
+        return companyDAO.findCompanyByInsertDate(date);
+    } public List<Company> findCompanyByLastContactDate (LocalDate date){
+        return companyDAO.findCompanyByLastContactDate(date);
     }
 
     public List<Company> getCompaniesByPartialName(String partialName) {

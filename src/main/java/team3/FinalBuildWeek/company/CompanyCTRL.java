@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import team3.FinalBuildWeek.customer.Customer;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -21,8 +22,15 @@ public class CompanyCTRL {
     @Autowired
     private CompanyDAO companyDAO;
 
-    @PostMapping
+    @GetMapping
+    @PreAuthorize("hasAuthority('USER')")
+    public Page<Company> getAll(@RequestParam(defaultValue = "0") int pageNumber,
+                                 @RequestParam(defaultValue = "10") int pageSize,
+                                 @RequestParam(defaultValue = "id") String orderBy) {
+        return companySRV.getAll(pageNumber, pageSize, orderBy);
+    }
 
+    @PostMapping
     public Company saveCompany(@RequestBody CompanyDTO companyDTO){
         return companySRV.save(companyDTO);
     }
@@ -71,9 +79,12 @@ public class CompanyCTRL {
     }
 
 
-    @GetMapping({"/date/{date}"})
-    public List<Company> findCompanyByDate (LocalDate date) {
-        return companySRV.findCompanyByDate(date);
+    @GetMapping({"/insDate/{date}"})
+    public List<Company> findCompanyByInsertDate (@PathVariable LocalDate date) {
+        return companySRV.findCompanyByInsertDate(date);
+    }@GetMapping({"/lastDate/{date}"})
+    public List<Company> findCompanyByLastContactDate (@PathVariable LocalDate date) {
+        return companySRV.findCompanyByLastContactDate(date);
     }
     @GetMapping("/orderByPartialName")
     @PreAuthorize("hasAuthority('USER')")

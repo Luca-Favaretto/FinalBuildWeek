@@ -27,7 +27,9 @@ public interface CompanyDAO extends JpaRepository<Company, UUID> {
 
 
        @Query("SELECT c FROM Company c WHERE c.insertion_date=:date")
-       List<Company> findCompanyByDate (LocalDate date);
+       List<Company> findCompanyByInsertDate (LocalDate date);
+       @Query("SELECT c FROM Company c WHERE c.last_contact_date=:date")
+       List<Company> findCompanyByLastContactDate (LocalDate date);
 
 
        @Query("SELECT c FROM Company c ORDER BY LOWER(c.business_name)")
