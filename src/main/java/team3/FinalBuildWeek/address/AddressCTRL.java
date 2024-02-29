@@ -3,8 +3,12 @@ package team3.FinalBuildWeek.address;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import team3.FinalBuildWeek.exceptions.BadRequestException;
 
+import java.io.IOException;
 import java.util.UUID;
 
 @RestController
@@ -23,7 +27,10 @@ public class AddressCTRL {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Address save(@RequestBody  AddressDTO addressDTO) {
+    public Address save(@RequestBody @Validated AddressDTO addressDTO, BindingResult validation) throws IOException {
+        if (validation.hasErrors()) {
+            throw new BadRequestException(validation.getAllErrors());
+        }
         return addressSRV.save(addressDTO);
     }
 
