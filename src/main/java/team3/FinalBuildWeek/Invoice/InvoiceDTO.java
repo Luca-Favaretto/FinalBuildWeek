@@ -11,6 +11,7 @@ public record InvoiceDTO(
          String invoiceNumber,
 //        @NotBlank(message = "Invoice status cannot be blank")
          String invoiceStatus,
+//        @NotBlank(message = "Email cannot be blank")
 //        @Email(message = "Please provide a valid email address")
          String email
 ) {
