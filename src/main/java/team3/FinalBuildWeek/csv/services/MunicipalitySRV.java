@@ -37,6 +37,7 @@ public class MunicipalitySRV {
     public Municipality save (Municipality municipality){
        return municipalityDAO.save(municipality);
     }
+
    public Municipality findByMunicipalName(String name){
         return municipalityDAO.findByMunicipalName(name).orElseThrow(()->new NotFoundException(name));
    };

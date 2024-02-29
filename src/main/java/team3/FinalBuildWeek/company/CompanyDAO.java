@@ -32,6 +32,7 @@ public interface CompanyDAO extends JpaRepository<Company, UUID> {
        @Query("SELECT c FROM Company c ORDER BY (c.insertion_date)")
        Page<Company> getAllOrderedByInsertionDate(Pageable pageable);
 
+
 }
 
 

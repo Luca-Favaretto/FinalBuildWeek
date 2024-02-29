@@ -5,7 +5,8 @@ public record AddressDTO(String address,
 
                          String location,
                          int postCode,
-                         String municipality
+                         String municipality,
+                         String businessName
                          ) {
 
 }
