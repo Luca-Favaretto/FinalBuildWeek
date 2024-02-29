@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import team3.FinalBuildWeek.address.Address;
 
 import java.util.UUID;
 
@@ -23,6 +24,8 @@ public class Municipality {
     private String city;
     @ManyToOne
     private Province province;
+    @OneToMany
+    private Address address;
 
     public Municipality(String municipalName, String city, Province province) {
         this.municipalName = municipalName;
