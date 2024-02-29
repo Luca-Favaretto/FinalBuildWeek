@@ -8,6 +8,7 @@ import lombok.ToString;
 import team3.FinalBuildWeek.company.Company;
 import team3.FinalBuildWeek.csv.entities.Municipality;
 
+
 import java.util.UUID;
 
 @Getter
@@ -26,18 +27,19 @@ public class Address {
     @Column(name="post_code")
 
     private int postCode;
-
     @ManyToOne
     private Municipality municipality;
-
     @ManyToOne
     private Company company;
 
-    public Address(String address, int number, String location, int postCode) {
+
+    public Address(String address, int number, String location, int postCode, Municipality municipality,Company company) {
         this.address = address;
         this.number = number;
         this.location = location;
         this.postCode = postCode;
+        this.municipality = municipality;
+        this.company=company;
 
     }
 }

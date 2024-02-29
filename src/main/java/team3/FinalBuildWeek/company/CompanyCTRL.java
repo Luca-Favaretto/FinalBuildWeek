@@ -50,14 +50,7 @@ public class CompanyCTRL {
         Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by(orderBy));
         return companyDAO.getAllOrderedByInsertionDate(pageable);
     }
-
-//    @GetMapping("/orderByInsertionDate")
-//    @PreAuthorize("hasAuthority('USER')")
-//    public Page<Company> getAllforInsertionDate(@RequestParam(defaultValue = "0") int pageNumber,
-//                                 @RequestParam(defaultValue = "10") int pageSize,
-//                                 @RequestParam(defaultValue = "insertion_date") String orderBy) {
-//        return companySRV.getAll(pageNumber, pageSize, orderBy);
-//    }
+    
 
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('USER')")

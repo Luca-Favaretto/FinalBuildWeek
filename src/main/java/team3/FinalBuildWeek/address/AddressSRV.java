@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import team3.FinalBuildWeek.company.Company;
+import team3.FinalBuildWeek.csv.entities.Municipality;
 import team3.FinalBuildWeek.exceptions.NotFoundException;
 
 import java.time.LocalDate;
@@ -27,7 +28,9 @@ public class AddressSRV {
     }
 
     public Address save(AddressDTO addressDTO) {
-        Address address = new Address(addressDTO.address(), addressDTO.number(), addressDTO.location(), addressDTO.postCode());
+        Municipality municipality=new Municipality();
+        Company company =new Company();
+        Address address = new Address(addressDTO.address(), addressDTO.number(), addressDTO.location(), addressDTO.postCode(),municipality,company);
 
         return addressDAO.save(address);
     }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import team3.FinalBuildWeek.address.Address;
 
 import java.util.UUID;
 
@@ -25,6 +26,8 @@ public class Municipality {
     @ManyToOne
     @JoinColumn(name = "province_id")
     private Province province;
+    @OneToMany
+    private Address address;
 
 
 
