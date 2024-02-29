@@ -12,7 +12,7 @@ import java.util.UUID;
 public interface MunicipalityDAO extends JpaRepository<Municipality, UUID> {
 
 
-    @Query("SELECT m FROM Municipality m WHERE m.municipalName=:name")
+    @Query("SELECT m FROM Municipality m WHERE m.city=:name")
     Optional<Municipality> findByMunicipalName(String name);
 
 

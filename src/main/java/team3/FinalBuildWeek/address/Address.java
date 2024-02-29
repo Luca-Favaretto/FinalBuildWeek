@@ -1,5 +1,6 @@
 package team3.FinalBuildWeek.address;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,9 +28,12 @@ public class Address {
     @Column(name="post_code")
 
     private int postCode;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "municipality_id")
     private Municipality municipality;
+    @JsonIgnore
+
     @ManyToOne
     @JoinColumn(name = "company_id")
     private Company company;

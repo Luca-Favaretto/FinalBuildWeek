@@ -36,7 +36,7 @@ public class AddressSRV {
 
     public Address save(AddressDTO addressDTO) {
         Municipality municipality=municipalitySRV.findByMunicipalName(addressDTO.municipality());
-        Company company =new Company();
+        Company company =companySRV.findByBusinessName(addressDTO.businessName());
         Address address = new Address(addressDTO.address(), addressDTO.number(), addressDTO.location(), addressDTO.postCode(),municipality,company);
 
         return addressDAO.save(address);

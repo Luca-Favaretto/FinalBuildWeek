@@ -17,7 +17,7 @@ public class AddressCTRL {
     @GetMapping
     public Page<Address> getAll(@RequestParam(defaultValue = "0") int pageNumber,
                                 @RequestParam(defaultValue = "10") int pageSize,
-                                @RequestParam(defaultValue = "date") String orderBy) {
+                                @RequestParam(defaultValue = "location") String orderBy) {
         return addressSRV.getAll(pageNumber, pageSize, orderBy);
     }
 

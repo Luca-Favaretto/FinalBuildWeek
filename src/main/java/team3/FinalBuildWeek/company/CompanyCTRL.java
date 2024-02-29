@@ -77,7 +77,7 @@ public class CompanyCTRL {
     }
     @GetMapping("/orderByPartialName")
     @PreAuthorize("hasAuthority('USER')")
-    public List<Company> getCompaniesByPartialName(@RequestParam(name = "partialName") String partialName) {
+    public List<Company> getCompaniesByPartialName(@RequestParam String partialName) {
        return companySRV.getCompaniesByPartialName(partialName);
 
     }

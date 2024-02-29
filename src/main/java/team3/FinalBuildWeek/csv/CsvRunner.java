@@ -18,7 +18,7 @@ import team3.FinalBuildWeek.csv.services.ProvinceSRV;
 import java.io.FileReader;
 import java.util.List;
 
-@Component
+//@Component
 public class CsvRunner implements CommandLineRunner {
 
     @Autowired
