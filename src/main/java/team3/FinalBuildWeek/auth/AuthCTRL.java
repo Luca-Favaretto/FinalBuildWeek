@@ -23,6 +23,7 @@ public class AuthCTRL {
     @Autowired
     private UserSRV userSRV;
 
+
     @PostMapping("/login")
     public LoginRegisterDTO login(@RequestBody UserLoginDTO payload) {
         return new LoginRegisterDTO(authSRV.authenticateUserAndGenerateToken(payload));
