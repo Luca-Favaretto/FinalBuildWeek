@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import team3.FinalBuildWeek.exceptions.BadRequestException;
@@ -36,7 +37,7 @@ public class CompanyCTRL {
 
 
     @PostMapping
-    public Company saveCompany(@RequestBody CompanyDTO companyDTO, BindingResult validation)throws IOException {
+    public Company saveCompany(@RequestBody @Validated CompanyDTO companyDTO, BindingResult validation)throws IOException {
         if (validation.hasErrors()) {
             throw new BadRequestException(validation.getAllErrors());
         }
