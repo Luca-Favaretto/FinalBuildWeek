@@ -8,10 +8,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import team3.FinalBuildWeek.configuration.EmailSender;
 import team3.FinalBuildWeek.exceptions.BadRequestException;
 import team3.FinalBuildWeek.exceptions.NotFoundException;
 import team3.FinalBuildWeek.exceptions.UnauthorizedException;
 
+import java.io.IOException;
 import java.util.UUID;
 
 @Service
@@ -21,6 +23,8 @@ public class UserSRV {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+    @Autowired
+    EmailSender emailSender;
 
     public Page<User> getAll(int pageNumber, int pageSize, String orderBy) {
         if (pageNumber > 20) pageSize = 20;
@@ -32,9 +36,10 @@ public class UserSRV {
         return userDAO.findById(UUID.fromString(String.valueOf(id))).orElseThrow(() -> new NotFoundException(String.valueOf(id)));
     }
 
-    public User save(UserDTO userDTO) {
+    public User save(UserDTO userDTO) throws IOException {
         if (userDAO.existsByEmail(userDTO.email())) throw new BadRequestException("email already exist");
         User user = new User(userDTO.name(), userDTO.surname(), userDTO.username(), passwordEncoder.encode(userDTO.password()), userDTO.email(), userDTO.name()+userDTO.surname());
+    //    emailSender.sendRegistrationEmail(userDTO);
         return userDAO.save(user);
     }
 
