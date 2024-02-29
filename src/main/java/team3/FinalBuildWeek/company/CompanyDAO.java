@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,8 +20,8 @@ public interface CompanyDAO extends JpaRepository<Company, UUID> {
                "ORDER BY fatturatoAnnuo DESC")
        List<Object[]> getAziendeOrdinatePerFatturatoAnnuo();
 
-
-
+       @Query("SELECT c FROM Company c WHERE c.insertion_date=:date")
+       List<Company> findCompanyByDate (LocalDate date);
 
 }
 

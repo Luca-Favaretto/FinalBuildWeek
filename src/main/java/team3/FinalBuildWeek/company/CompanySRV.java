@@ -11,6 +11,7 @@ import team3.FinalBuildWeek.customer.Customer;
 import team3.FinalBuildWeek.customer.CustomerDAO;
 import team3.FinalBuildWeek.exceptions.NotFoundException;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -58,6 +59,9 @@ public class CompanySRV {
 
     public List<Object[]> getAziendeOrdinatePerFatturatoAnnuo() {
         return companyDAO.getAziendeOrdinatePerFatturatoAnnuo();
+    }
+    public List<Company> findCompanyByDate (LocalDate date){
+        return companyDAO.findCompanyByDate(date);
     }
 
 

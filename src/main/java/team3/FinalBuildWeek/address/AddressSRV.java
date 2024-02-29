@@ -6,8 +6,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import team3.FinalBuildWeek.company.Company;
 import team3.FinalBuildWeek.exceptions.NotFoundException;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -15,6 +18,7 @@ public class AddressSRV {
 
     @Autowired
     AddressDAO addressDAO;
+
 
     public Page<Address> getAll(int pageNumber, int pageSize, String orderBy) {
         if (pageNumber > 20) pageSize = 20;
@@ -49,4 +53,5 @@ public class AddressSRV {
         Address found = findById(id);
         addressDAO.delete(found);
     }
+
 }

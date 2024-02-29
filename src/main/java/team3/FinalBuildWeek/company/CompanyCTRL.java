@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -67,5 +68,10 @@ public class CompanyCTRL {
     @GetMapping
     public List<Object[]> getCompanyForAmount(){
         return companySRV.getAziendeOrdinatePerFatturatoAnnuo();
+    }
+
+    @GetMapping({"/date/{date}"})
+    public List<Company> findCompanyByDate (LocalDate date){
+        return companySRV.findCompanyByDate(date);
     }
 }
