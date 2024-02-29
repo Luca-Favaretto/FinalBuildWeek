@@ -70,8 +70,15 @@ public class CompanyCTRL {
         return companySRV.getAziendeOrdinatePerFatturatoAnnuo();
     }
 
+
     @GetMapping({"/date/{date}"})
-    public List<Company> findCompanyByDate (LocalDate date){
+    public List<Company> findCompanyByDate (LocalDate date) {
         return companySRV.findCompanyByDate(date);
+    }
+    @GetMapping("/orderByPartialName")
+    @PreAuthorize("hasAuthority('USER')")
+    public List<Company> getCompaniesByPartialName(@RequestParam(name = "partialName") String partialName) {
+       return companySRV.getCompaniesByPartialName(partialName);
+
     }
 }

@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -13,6 +14,8 @@ import java.util.UUID;
 @Repository
 public interface CompanyDAO extends JpaRepository<Company, UUID> {
        boolean existsByEmail(String email);
+
+       Company findByBuisnessName(String buisnessName);
 
        @Query("SELECT c.business_name, EXTRACT(YEAR FROM i.date) AS anno, SUM(i.amount) AS fatturatoAnnuo " +
                "FROM Company c " +
@@ -31,6 +34,14 @@ public interface CompanyDAO extends JpaRepository<Company, UUID> {
        Page<Company> getAllOrderedByName(Pageable pageable);
        @Query("SELECT c FROM Company c ORDER BY (c.insertion_date)")
        Page<Company> getAllOrderedByInsertionDate(Pageable pageable);
+
+
+
+
+       @Query("SELECT c FROM Company c WHERE LOWER(c.business_name) LIKE %:partialName% ORDER BY c.business_name")
+       List<Company> getCompaniesByPartialName(@Param("partialName") String partialName);
+
+
 
 }
 

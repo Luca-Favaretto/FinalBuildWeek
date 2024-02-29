@@ -64,5 +64,9 @@ public class CompanySRV {
         return companyDAO.findCompanyByDate(date);
     }
 
+    public List<Company> getCompaniesByPartialName(String partialName) {
+        return companyDAO.getCompaniesByPartialName("%" + partialName.toLowerCase() + "%");
+    }
+
 
 }
