@@ -10,6 +10,11 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
@@ -32,11 +37,11 @@ public class AuthConfig {
         return httpSecurity.build();
     }
 
-    /*@Bean
+    @Bean
     CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowedOrigins(Arrays.asList("", ""));
+        config.setAllowedOrigins(Arrays.asList("http://localhost:4201", "https://mywonderfulfrontend.com")); //CAMBIA IL SECONDO CON QUELLO GIUSTO
         config.setAllowedMethods(Arrays.asList("*"));
         config.setAllowedHeaders(Arrays.asList("*"));
 
@@ -44,7 +49,7 @@ public class AuthConfig {
         source.registerCorsConfiguration("/**", config);
 
         return source;
-    }*/
+    }
 
 
 }
