@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -42,6 +43,8 @@ public interface CompanyDAO extends JpaRepository<Company, UUID> {
        @Query("SELECT c FROM Company c WHERE LOWER(c.business_name) LIKE %:partialName% ORDER BY c.business_name")
        List<Company> getCompaniesByPartialName(@Param("partialName") String partialName);
 
+       @Query("SELECT c FROM Company c WHERE LOWER(c.business_name)=LOWER(:name)")
+       Optional<Company> findByBusinessName(String name);
 
 
 }
