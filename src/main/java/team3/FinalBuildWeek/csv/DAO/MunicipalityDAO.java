@@ -9,4 +9,7 @@ import java.util.UUID;
 @Repository
 public interface MunicipalityDAO extends JpaRepository<Municipality, UUID> {
 
+
+
+
 }

@@ -21,8 +21,12 @@ public class Municipality {
     private UUID id;
     private String municipalName;
     private String city;
+
     @ManyToOne
+    @JoinColumn(name = "province_id")
     private Province province;
+
+
 
     public Municipality(String municipalName, String city, Province province) {
         this.municipalName = municipalName;

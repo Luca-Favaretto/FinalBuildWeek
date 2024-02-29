@@ -27,7 +27,7 @@ public class AddressSRV {
     }
 
     public Address save(AddressDTO addressDTO) {
-        Address address = new Address(addressDTO.address(), addressDTO.number(), addressDTO.Location(), addressDTO.PostCode(), addressDTO.cityHall());
+        Address address = new Address(addressDTO.address(), addressDTO.number(), addressDTO.location(), addressDTO.postCode());
 
         return addressDAO.save(address);
     }
@@ -45,9 +45,14 @@ public class AddressSRV {
         found.setNumber(modifiedAddress.getNumber());
         found.setLocation(modifiedAddress.getLocation());
         found.setPostCode(modifiedAddress.getPostCode());
-        found.setCityHall(modifiedAddress.getCityHall());
+
+        found.setMunicipality(modifiedAddress.getMunicipality());
         return addressDAO.save(found);
     }
+
+
+
+
 
     public void deleteById(UUID id) {
         Address found = findById(id);

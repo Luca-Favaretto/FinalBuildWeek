@@ -1,7 +1,6 @@
 package team3.FinalBuildWeek.csv.entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,14 +21,21 @@ public class Province {
     @Column(name = "id",nullable = false)
     private UUID id;
     private String acronym;
-    private String Province;
-    private String Region;
+    private String province;
+    private String region;
 
-    @OneToMany(mappedBy = "province")
+
+    @OneToMany(mappedBy = "province", cascade = CascadeType.ALL)
     private Set<Municipality> municipalities;
+
+
+
     public Province(String acronym, String province, String region) {
         this.acronym = acronym;
-        Province = province;
-        Region = region;
+        this.province = province;
+        this.region = region;
+    }
+
+    public Province(String x) {
     }
 }
