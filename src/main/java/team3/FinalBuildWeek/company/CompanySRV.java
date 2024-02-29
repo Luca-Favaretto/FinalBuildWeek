@@ -77,6 +77,9 @@ public class CompanySRV {
     public Company findByBusinessName(String name){
         return companyDAO.findByBusinessName(name).orElseThrow(()->new NotFoundException(name));
     };
+   public List<Company> orderByProvince(){
+       return companyDAO.orderByProvince();
+   };
 
 
 }

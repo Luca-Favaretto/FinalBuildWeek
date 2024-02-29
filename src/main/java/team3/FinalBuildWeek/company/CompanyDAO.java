@@ -45,6 +45,9 @@ public interface CompanyDAO extends JpaRepository<Company, UUID> {
        @Query("SELECT c FROM Company c WHERE LOWER(c.business_name)=LOWER(:name)")
        Optional<Company> findByBusinessName(String name);
 
+       @Query("SELECT c FROM Company c JOIN c.address a JOIN a.municipality m ORDER BY m.province")
+       List<Company> orderByProvince();
+
 
 }
 

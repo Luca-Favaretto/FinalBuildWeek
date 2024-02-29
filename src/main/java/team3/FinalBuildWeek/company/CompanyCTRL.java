@@ -100,4 +100,9 @@ public class CompanyCTRL {
        return companySRV.getCompaniesByPartialName(partialName);
 
     }
+    @GetMapping("/orderByProvince")
+    @PreAuthorize("hasAuthority('USER')")
+    public List<Company> orderByProvince(){
+        return companySRV.orderByProvince();
+    };
 }
