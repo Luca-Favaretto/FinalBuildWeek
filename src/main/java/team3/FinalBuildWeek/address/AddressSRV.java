@@ -7,7 +7,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import team3.FinalBuildWeek.company.Company;
+import team3.FinalBuildWeek.company.CompanySRV;
 import team3.FinalBuildWeek.csv.entities.Municipality;
+import team3.FinalBuildWeek.csv.services.MunicipalitySRV;
 import team3.FinalBuildWeek.exceptions.NotFoundException;
 
 import java.time.LocalDate;
@@ -19,6 +21,10 @@ public class AddressSRV {
 
     @Autowired
     AddressDAO addressDAO;
+    @Autowired
+    MunicipalitySRV municipalitySRV;
+    @Autowired
+    CompanySRV companySRV;
 
 
     public Page<Address> getAll(int pageNumber, int pageSize, String orderBy) {
@@ -28,7 +34,7 @@ public class AddressSRV {
     }
 
     public Address save(AddressDTO addressDTO) {
-        Municipality municipality=new Municipality();
+        Municipality municipality=municipalitySRV.findByMunicipalName(addressDTO.municipality());
         Company company =new Company();
         Address address = new Address(addressDTO.address(), addressDTO.number(), addressDTO.location(), addressDTO.postCode(),municipality,company);
 

@@ -38,6 +38,7 @@ public interface CompanyDAO extends JpaRepository<Company, UUID> {
 
 
 
+
        @Query("SELECT c FROM Company c WHERE LOWER(c.business_name) LIKE %:partialName% ORDER BY c.business_name")
        List<Company> getCompaniesByPartialName(@Param("partialName") String partialName);
 
