@@ -25,7 +25,10 @@ public class AuthCTRL {
 
 
     @PostMapping("/login")
-    public LoginRegisterDTO login(@RequestBody UserLoginDTO payload) {
+    public LoginRegisterDTO login(@RequestBody @Validated UserLoginDTO payload, BindingResult validation) throws IOException {
+        if (validation.hasErrors()) {
+            throw new BadRequestException(validation.getAllErrors());
+        }
         return new LoginRegisterDTO(authSRV.authenticateUserAndGenerateToken(payload));
     }
 
