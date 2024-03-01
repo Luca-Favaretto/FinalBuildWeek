@@ -29,6 +29,9 @@ public class Filter extends OncePerRequestFilter {
     }
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
-        return new AntPathMatcher().match("/auth/**", request.getServletPath());
+        AntPathMatcher antPathMatcher = new AntPathMatcher();
+        return antPathMatcher.match("/auth/**", request.getServletPath())
+                || antPathMatcher.match("/v3/api-docs/**", request.getServletPath())
+                || antPathMatcher.match("/swagger-ui/**", request.getServletPath());
     }
 }
