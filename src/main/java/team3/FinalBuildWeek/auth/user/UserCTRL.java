@@ -7,8 +7,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -27,6 +25,11 @@ public class UserCTRL {
     @GetMapping("/{id}")
     public User findById(@PathVariable UUID id) {
         return userSRV.findById(id);
+    }
+
+    @GetMapping("/me")
+    public User getCurrentUser(@AuthenticationPrincipal User authenticatedCustomer) {
+        return authenticatedCustomer;
     }
 
 
