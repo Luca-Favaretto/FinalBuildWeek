@@ -3,6 +3,7 @@ package team3.FinalBuildWeek.auth.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -31,6 +32,7 @@ public class AuthConfig {
         httpSecurity.formLogin(AbstractHttpConfigurer::disable);
         httpSecurity.csrf(AbstractHttpConfigurer::disable);
         httpSecurity.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+        httpSecurity.cors(Customizer.withDefaults());
 
         httpSecurity.addFilterBefore(handler, UsernamePasswordAuthenticationFilter.class);
 
