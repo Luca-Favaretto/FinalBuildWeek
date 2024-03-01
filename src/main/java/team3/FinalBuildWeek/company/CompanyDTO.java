@@ -1,26 +1,29 @@
 package team3.FinalBuildWeek.company;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import team3.FinalBuildWeek.enums.Type;
 
 import java.time.LocalDate;
 
 public record CompanyDTO(
-//        @NotBlank(message = "Business name cannot be blank")
+        @NotBlank(message = "Business name cannot be blank")
         String business_name,
-//        @NotBlank(message = "VAT number cannot be blank")
+        @NotBlank(message = "VAT number cannot be blank")
         String vat_number,
-//        @Email(message = "Please provide a valid email address")
+        @Email(message = "Please provide a valid email address")
         String email,
-//        @NotBlank(message = "Phone number cannot be blank")
+       @NotBlank(message = "Phone number cannot be blank")
         String phone_number,
         String logo,
 
-//        @NotNull(message = "Insertion date cannot be null")
+       @NotNull(message = "Insertion date cannot be null")
         LocalDate insertion_date,
         LocalDate last_contact_date,
-//        @Email(message = "Please provide a valid customer email address")
+        @Email(message = "Please provide a valid customer email address")
         String customer_email,
-//        @NotBlank(message = "Company type cannot be blank")
+        @NotBlank(message = "Company type cannot be blank")
         String type) {
     public Type getType() {
         try {
