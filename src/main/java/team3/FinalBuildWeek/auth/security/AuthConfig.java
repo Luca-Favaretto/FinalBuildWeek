@@ -47,7 +47,7 @@ public class AuthConfig {
     CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowedOrigins(Arrays.asList("http://localhost:4200", "https://mywonderfulfrontend.com","http://localhost:63892"));
+        config.setAllowedOrigins(Arrays.asList("http://localhost:4200", "https://mywonderfulfrontend.com","http://localhost:63892", "http://localhost:52026"));
         config.setAllowedMethods(Arrays.asList("*"));
         config.setAllowedHeaders(Arrays.asList("*"));
 
